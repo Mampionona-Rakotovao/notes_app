@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'login_page.dart';
+import 'notes_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,12 +45,8 @@ class AuthGate extends StatelessWidget {
         final session = snapshot.data?.session ?? supabase.auth.currentSession;
 
         if (session != null) {
-          // Utilisateur connecté → on ira vers la liste des notes
-          // (pour l'instant, écran temporaire, on la crée à l'étape suivante)
-          return const Scaffold(
-            body: Center(child: Text('Connecté ! Liste des notes à venir 📝')),
-          );
-        }
+  return const NotesPage();
+}
 
         // Utilisateur non connecté → page de login
         return const LoginPage();
